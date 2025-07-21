@@ -265,18 +265,16 @@ rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
--- NOTE: Here is where you install your plugins.
+--
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-
+  require("custom.plugins.lsp"),
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -378,6 +376,45 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  --
+
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup {
+        ensure_installed = {
+          'html',
+          'cssls',
+          'emmet_ls',
+          'pyright', -- per Python
+        },
+      }
+
+--      local lspconfig = require 'lspconfig'
+--
+--      -- HTML LSP con support per Django templates
+--      lspconfig.html.setup {
+--        filetypes = { 'html', 'htmldjango' },
+--        init_options = {
+--          configurationSection = { 'html', 'css', 'javascript' },
+--          embeddedLanguages = {
+--            css = true,
+--            javascript = true,
+--          },
+--        },
+--      }
+--
+--      -- Emmet per autocompletamento veloce
+--      lspconfig.emmet_ls.setup {
+--        filetypes = { 'html', 'htmldjango', 'css' },
+--      }
+    end,
+  },
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -1040,3 +1077,20 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+-- Riconoscimento file Django templates
+vim.filetype.add {
+  extension = {
+    html = function(path, bufnr)
+      -- Se il file contiene syntax Django, usa htmldjango
+      local content = vim.fn.getline(1, 50) -- primi 50 righe
+      for _, line in ipairs(content) do
+        if line:match '{{' or line:match '{%%' then
+          return 'htmldjango'
+        end
+      end
+      return 'html'
+    end,
+  },
+}
