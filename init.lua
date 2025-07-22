@@ -193,7 +193,13 @@ vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent right' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Indent left' })
 vim.keymap.set('n', '<Tab>', '>>', { desc = 'Indent line right' })
 vim.keymap.set('n', '<S-Tab>', '<<', { desc = 'Indent line left' })
-
+-- Configurazione spazi globale
+vim.opt.expandtab = true -- Usa spazi invece di tab
+vim.opt.shiftwidth = 4 -- Numero di spazi per indentazione
+vim.opt.tabstop = 4 -- Numero di spazi che un tab rappresenta
+vim.opt.softtabstop = 4 -- Numero di spazi quando premi tab
+vim.opt.smartindent = true -- Indentazione intelligente
+vim.opt.autoindent = true -- Mantiene l'indentazione della riga precedente
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -274,7 +280,9 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-  require("custom.plugins.lsp"),
+  require 'custom.plugins.lsp',
+  require 'custom.plugins.codeium',
+
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -395,24 +403,24 @@ require('lazy').setup({
         },
       }
 
---      local lspconfig = require 'lspconfig'
---
---      -- HTML LSP con support per Django templates
---      lspconfig.html.setup {
---        filetypes = { 'html', 'htmldjango' },
---        init_options = {
---          configurationSection = { 'html', 'css', 'javascript' },
---          embeddedLanguages = {
---            css = true,
---            javascript = true,
---          },
---        },
---      }
---
---      -- Emmet per autocompletamento veloce
---      lspconfig.emmet_ls.setup {
---        filetypes = { 'html', 'htmldjango', 'css' },
---      }
+      --      local lspconfig = require 'lspconfig'
+      --
+      --      -- HTML LSP con support per Django templates
+      --      lspconfig.html.setup {
+      --        filetypes = { 'html', 'htmldjango' },
+      --        init_options = {
+      --          configurationSection = { 'html', 'css', 'javascript' },
+      --          embeddedLanguages = {
+      --            css = true,
+      --            javascript = true,
+      --          },
+      --        },
+      --      }
+      --
+      --      -- Emmet per autocompletamento veloce
+      --      lspconfig.emmet_ls.setup {
+      --        filetypes = { 'html', 'htmldjango', 'css' },
+      --      }
     end,
   },
 
