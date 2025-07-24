@@ -280,8 +280,6 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-  require 'custom.plugins.lsp',
-  require 'custom.plugins.codeium',
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
@@ -1056,6 +1054,11 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
+  { import = 'custom.plugins.lsp' },
+  { import = 'custom.plugins.codeium' },
+  { import = 'custom.plugins.snippets' },
+  { import = 'custom.plugins.colorschemes' },
+  { import = 'custom.plugins.cmp-config' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
