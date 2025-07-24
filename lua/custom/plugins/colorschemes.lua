@@ -47,13 +47,16 @@ return {
     end,
   },
 
-  -- CONFIGURAZIONE DEL COLORSCHEME DEFAULT
-  -- Metti questo DOPO tutti i plugin colorscheme
   {
-    'folke/lazy.nvim', -- Usa lazy.nvim stesso per fare la configurazione iniziale
+    'ellisonleao/gruvbox.nvim',
+    priority = 1001,
+    lazy = false,
     config = function()
-      -- QUI SCEGLI IL TUO COLORSCHEME DEFAULT
-      vim.cmd.colorscheme 'catppuccin' -- Cambia questo per settare il default
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          vim.cmd.colorscheme 'gruvbox'
+        end,
+      })
     end,
   },
 }
