@@ -179,6 +179,8 @@ vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('n', '<leader>-', '<cmd>split<CR>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'Vertical split' })
 vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank until end of line' })
+vim.keymap.set('n', '<leader>w', '<C-w>w', { desc = 'Go to next window' })
+vim.keymap.set('n', '<leader>x', '<C-w>q', { desc = 'Close current window' })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Yank until end of line to system clipboard' })

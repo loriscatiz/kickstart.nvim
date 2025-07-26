@@ -13,6 +13,7 @@ return {
           'cssls',
           'emmet_ls',
           'pyright', -- per Python
+          'golangls', -- per Go
         },
       }
 

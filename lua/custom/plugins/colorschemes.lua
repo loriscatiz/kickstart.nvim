@@ -19,6 +19,12 @@ return {
       }
     end,
   },
+  -- night owl
+  {
+    'oxfist/night-owl.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000,
+  },
 
   -- Solarized
   {
@@ -48,13 +54,13 @@ return {
   },
 
   {
-    'ellisonleao/gruvbox.nvim',
+    'catppuccin/nvim',
     priority = 1001,
     lazy = false,
     config = function()
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
-          vim.cmd.colorscheme 'gruvbox'
+          vim.cmd.colorscheme 'catppuccin'
         end,
       })
     end,
