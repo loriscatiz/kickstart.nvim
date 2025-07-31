@@ -175,6 +175,8 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- My custom keymaps
+vim.opt.colorcolumn = '80,100'
+vim.cmd [[highlight ColorColumn ctermbg=lightgrey guibg=lightgrey]]
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('n', '<leader>-', '<cmd>split<CR>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'Vertical split' })
@@ -195,6 +197,8 @@ vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent right' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Indent left' })
 vim.keymap.set('n', '<Tab>', '>>', { desc = 'Indent line right' })
 vim.keymap.set('n', '<S-Tab>', '<<', { desc = 'Indent line left' })
+
+vim.cmd 'set iskeyword=@,48-57,192-255'
 -- Configurazione spazi globale
 vim.opt.expandtab = true -- Usa spazi invece di tab
 vim.opt.shiftwidth = 4 -- Numero di spazi per indentazione
@@ -1057,7 +1061,7 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
   { import = 'custom.plugins.lsp' },
-  { import = 'custom.plugins.codeium' },
+  -- { import = 'custom.plugins.codeium' },
   { import = 'custom.plugins.snippets' },
   { import = 'custom.plugins.colorschemes' },
   { import = 'custom.plugins.cmp-config' },

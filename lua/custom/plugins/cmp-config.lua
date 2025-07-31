@@ -33,6 +33,8 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
       },
     }
   end,
